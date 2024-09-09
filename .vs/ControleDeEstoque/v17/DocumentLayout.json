@@ -1,0 +1,93 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\daltipopagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\daltipopagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 308,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DALProduto.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALProduto.cs",
+              "RelativeDocumentMoniker": "DAL\\DALProduto.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALProduto.cs",
+              "RelativeToolTip": "DAL\\DALProduto.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwBsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T18:55:56.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DALTipoPagamento.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALTipoPagamento.cs",
+              "RelativeDocumentMoniker": "DAL\\DALTipoPagamento.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALTipoPagamento.cs",
+              "RelativeToolTip": "DAL\\DALTipoPagamento.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAA9wHQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T18:53:48.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DALCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALCompra.cs",
+              "RelativeDocumentMoniker": "DAL\\DALCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALCompra.cs",
+              "RelativeToolTip": "DAL\\DALCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-09T18:45:04.174Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 92,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
