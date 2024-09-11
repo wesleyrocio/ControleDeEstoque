@@ -8,6 +8,6 @@ namespace DAL
 {
     public static class DALConstantes
     {
-        public static string[] operador = { " = ", " LIKE " };
+        public static string[] operador = { " = ", " LIKE "," BETWEEN " };
     }
 }

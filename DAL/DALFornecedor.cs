@@ -123,7 +123,7 @@ namespace DAL
             pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor";
 
 
-            return DALUtil.BuscaResultadoDataTable(valor, sql, conexao);
+            return DALUtil.BuscaResultadoDataTable([valor], sql, conexao);
         }
         private static string[] populaPesquisarPor()
         {

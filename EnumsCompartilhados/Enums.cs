@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EnumsCompartilhados
 {
-    public enum TipoPesquisa { exata, aproximada }
+    public enum TipoPesquisa { exata, aproximada, intervalo }
     public enum ProdutoPesquisarPor
     {
         codigo = 0,

@@ -42,12 +42,18 @@ namespace DAL
              cmd.Parameters.AddWithValue("@cli_estado", modelo.CliEstado      );*/
         }
 
-        public static DataTable BuscaResultadoDataTable(string valor, string sql, DALConexao conexao)
+        public static DataTable BuscaResultadoDataTable(string[] valor, string sql, DALConexao conexao)
         {
             var cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = sql;
             cmd.Parameters.AddWithValue("@Valor", valor);
+          
+            if (valor.Length > 1) 
+            {
+                cmd.Parameters.AddWithValue("@Valor02",valor[1]);
+            }           
+           
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);

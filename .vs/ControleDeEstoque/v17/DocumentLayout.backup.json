@@ -7,12 +7,32 @@
       "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\modelo\\modelocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|solutionrelative:modelo\\modelocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalfornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalfornecedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalconstantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalconstantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\dalproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\dalproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\dal\\daltipopagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3B8C864-B283-4C9B-BFFE-6307D0A4D5B7}|DAL\\DAL.csproj|solutionrelative:dal\\daltipopagamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A82E3E5B-A809-4F0B-B45F-58FC0F5D83A5}|EnumsCompartilhados\\EnumsCompartilhados.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\enumscompartilhados\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A82E3E5B-A809-4F0B-B45F-58FC0F5D83A5}|EnumsCompartilhados\\EnumsCompartilhados.csproj|solutionrelative:enumscompartilhados\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +42,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 308,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 10,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModeloCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloCompra.cs",
+              "RelativeDocumentMoniker": "Modelo\\ModeloCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloCompra.cs",
+              "RelativeToolTip": "Modelo\\ModeloCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T15:19:27.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DALCliente.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALCliente.cs",
+              "RelativeDocumentMoniker": "DAL\\DALCliente.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALCliente.cs",
+              "RelativeToolTip": "DAL\\DALCliente.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAmwHMAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T15:08:59.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DALFornecedor.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALFornecedor.cs",
+              "RelativeDocumentMoniker": "DAL\\DALFornecedor.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALFornecedor.cs",
+              "RelativeToolTip": "DAL\\DALFornecedor.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAuwH0AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T15:08:35.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DALConstantes.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALConstantes.cs",
+              "RelativeDocumentMoniker": "DAL\\DALConstantes.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALConstantes.cs",
+              "RelativeToolTip": "DAL\\DALConstantes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T14:01:55.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\EnumsCompartilhados\\Enums.cs",
+              "RelativeDocumentMoniker": "EnumsCompartilhados\\Enums.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\EnumsCompartilhados\\Enums.cs",
+              "RelativeToolTip": "EnumsCompartilhados\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T13:41:11.233Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -33,27 +118,31 @@
               "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "DALProduto.cs",
               "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALProduto.cs",
               "RelativeDocumentMoniker": "DAL\\DALProduto.cs",
               "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALProduto.cs",
               "RelativeToolTip": "DAL\\DALProduto.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwBsAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAgwJ0AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T18:55:56.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "DALTipoPagamento.cs",
               "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALTipoPagamento.cs",
               "RelativeDocumentMoniker": "DAL\\DALTipoPagamento.cs",
               "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALTipoPagamento.cs",
               "RelativeToolTip": "DAL\\DALTipoPagamento.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAA9wHQAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowGYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T18:53:48.11Z",
               "EditorCaption": ""
@@ -66,7 +155,7 @@
               "RelativeDocumentMoniker": "DAL\\DALCompra.cs",
               "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\DAL\\DALCompra.cs",
               "RelativeToolTip": "DAL\\DALCompra.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAkwHgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T18:45:04.174Z",
               "EditorCaption": ""

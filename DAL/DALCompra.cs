@@ -76,7 +76,7 @@ namespace DAL
                 "com_status    = @ComStatus      ," +
                 "for_cod       = @ForCod         ," +
                 "tpa_cod       = @TpaCod          " +               
-                "where cli_cod = @ComCod          ;";
+                "where com_cod = @ComCod          ;";
 
             AdicionaParametros(modelo, cmd);
 
@@ -96,17 +96,24 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public DataTable Localizar(string valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedo, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
+        public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedo, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
         {
-            string sql = DefinePesquisa(valor, enumPesquisarPor,  tipoPesquisa);
+            string sql = DefinePesquisa(valor, enumPesquisarPor,  tipoPesquisa);         
 
+            
             return DALUtil.BuscaResultadoDataTable(valor, sql, conexao);
+            
         }
 
-        private string DefinePesquisa(string valor, CompraPesquisarPor enumPesquisarPor,  TipoPesquisa tipoPesquisa)
+        private string DefinePesquisa(string[] valor, CompraPesquisarPor enumPesquisarPor,  TipoPesquisa tipoPesquisa)
         {
-            if (tipoPesquisa == TipoPesquisa.aproximada) { valor = "%" + valor + "%"; }
-            if (valor == "") { valor = "%%%"; }
+    
+            
+            
+            if (tipoPesquisa == TipoPesquisa.aproximada) { valor[0] = "%" + valor[0] + "%"; }
+         //   if (tipoPesquisa == TipoPesquisa.intervalo) { valor[0] = valor[0] + " and " + valor[1]; }
+            if (valor[0] == "") { valor[0] = "%%%"; }
+
             if (enumPesquisarPor == CompraPesquisarPor.codigo) { tipoPesquisa = TipoPesquisa.exata; }
 
             string sql = "" +
@@ -114,22 +121,30 @@ namespace DAL
                 "inner join fornecedor ON compra.for_cod=fornecedor.for_cod       " +
                 "inner join tipopagamento ON compra.tpa_cod=tipopagamento.tpa_cod " +
                 "where " +
-            pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor";
+            pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor ";
+            if (tipoPesquisa == TipoPesquisa.intervalo) {
+                sql += " and @Valor02";
+            }
+            
+            
             return sql;
         }
 
         private static string[] populaPesquisarPor()
         {
+
+            
+
             string[] pesquisarPor = new string[(Enum.GetNames(typeof(CompraPesquisarPor)).Length)];
             pesquisarPor[(int)CompraPesquisarPor.codigo             ] = "com_cod"                ;
             pesquisarPor[(int)CompraPesquisarPor.data               ] = "com_data"               ;
             pesquisarPor[(int)CompraPesquisarPor.notaFiscal         ] = "com_nfiscal"            ;
             pesquisarPor[(int)CompraPesquisarPor.numeroParcelas     ] = "com_nparcelas"          ;
-            pesquisarPor[(int)CompraPesquisarPor.status             ] = "com_status"            ;
-            pesquisarPor[(int)CompraPesquisarPor.codFornecedor      ] = "compra.for_cod";
-            pesquisarPor[(int)CompraPesquisarPor.nomeFornecedo      ] = "fornecedor.for_nome";
-            pesquisarPor[(int)CompraPesquisarPor.codTipoPagamento   ] = "compra.tpa_cod";
-            pesquisarPor[(int)CompraPesquisarPor.nomeTipoPagamento  ] = "tipopagamento.tpa_nome";
+            pesquisarPor[(int)CompraPesquisarPor.status             ] = "com_status"             ;
+            pesquisarPor[(int)CompraPesquisarPor.codFornecedor      ] = "compra.for_cod"         ;
+            pesquisarPor[(int)CompraPesquisarPor.nomeFornecedo      ] = "fornecedor.for_nome"    ;
+            pesquisarPor[(int)CompraPesquisarPor.codTipoPagamento   ] = "compra.tpa_cod"         ;
+            pesquisarPor[(int)CompraPesquisarPor.nomeTipoPagamento  ] = "tipopagamento.tpa_nome" ;
             return pesquisarPor;
         }
         private static void preencheModelocomDataReader(ModeloCompra modelo, SqlDataReader reg)
@@ -149,7 +164,7 @@ namespace DAL
         public ModeloCompra CarregaModelo(int codigo)
         {
 
-            string sql = DefinePesquisa(codigo.ToString(), CompraPesquisarPor.codigo,TipoPesquisa.exata ); 
+            string sql = DefinePesquisa([codigo.ToString()], CompraPesquisarPor.codigo,TipoPesquisa.exata ); 
             ModeloCompra modelo = new ModeloCompra();
             SqlDataReader reg = DALUtil.buscaResultadoDataReader(codigo, sql, conexao);
 
