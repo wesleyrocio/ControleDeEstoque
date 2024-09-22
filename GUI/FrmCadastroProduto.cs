@@ -161,6 +161,8 @@ namespace GUI
             cbCategoria.DataSource = colecaoCategoria;
             cbCategoria.DisplayMember = "CatNome";
             cbCategoria.ValueMember = "CatCod";
+            cbCategoria.AutoCompleteMode   = AutoCompleteMode.Suggest;
+            cbCategoria.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             //ModeloCategoria cat = colecaoCategoria.FirstOrDefault(c => c.CatCod == 1); 
         }
@@ -173,6 +175,8 @@ namespace GUI
             cbSubCategoria.DataSource = categoriaSelecionada.SubCategorias;
             cbSubCategoria.DisplayMember = "ScatNome";
             cbSubCategoria.ValueMember = "scatCod";
+            cbSubCategoria.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSubCategoria.AutoCompleteSource = AutoCompleteSource.ListItems;
 
         }
         private void atualizaComboBoxUndMedida()
@@ -478,8 +482,7 @@ namespace GUI
                     return;
                 }               
                 e.Handled = (textoAtual.Contains(','));
-             /*   txt.Text= textoAtual+",";
-                return;*/
+            
                
             }
             if (textoAtual.Contains(",") && textoAtual.Substring(posicaoVirgula + 1).Length >= maximoCasasDecimais )
@@ -533,6 +536,15 @@ namespace GUI
             }
 
         }
+        private void TirarMascara(Object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            txt.Text = txt.Text.Replace("R$", "").Trim();
+            if (txt.Text == "0,00" || txt.Text == "0") { txt.Text = ""; }
+
+
+        }
+
         private void LimpaCampoNumerico(object sender, EventArgs e)
         {
             TextBox tB = (TextBox)sender;
@@ -549,15 +561,7 @@ namespace GUI
             return txt;
 
         }
-        private void TirarMascara(Object sender, EventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-            txt.Text = txt.Text.Replace("R$", "").Trim();
-            if (txt.Text == "0,00" || txt.Text=="0") { txt.Text = ""; }
-           
-
-        }
-
+       
         private void btnAddUndMedida_Click(object sender, EventArgs e)
         {
             var frmCadastroUndMedida = new FrmCadastroUndMedida();

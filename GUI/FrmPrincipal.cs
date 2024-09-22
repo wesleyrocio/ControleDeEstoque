@@ -129,5 +129,11 @@ namespace GUI
             var frmCadastroFornecedor = new FrmCadastroFornecedor();
             AbreForm(frmCadastroFornecedor);
         }
+
+        private void compraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FrmMovimentacaoCompra();
+            AbreForm(form);
+        }
     }
 }

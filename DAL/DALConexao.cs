@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,57 @@ using EnumsCompartilhados;
 
 namespace DAL
 {
-    public interface IDALConexao
-    {
-        string StringConexao { get; set; }
-        SqlConnection ObjetoConexao { get; }
 
-        void Conectar();
-        void Desconectar();
-        bool testaConexao();
-        void setarConexao();
-    }
-    public class DALConexao : IDALConexao
+    public class DALConexao
     {
-        private string        _stringConexao;
+        private string _stringConexao;
         private SqlConnection _conexao;
+        private SqlTransaction _transacao;
+        private bool _transacaoAtiva = false;
+
+        public bool TansasaoAtiva { get { return _transacaoAtiva; } }
+        public SqlTransaction Transacao {get {return _transacao;} }
+
+
+        public void IniciarTransacao()
+        {
+            if (_conexao.State != ConnectionState.Open)
+            {
+                throw new Exception("Não é possível iniciar uma nova transação. A conexão não está aberta.");
+            }
+
+            //_conexao.Open();
+            
+
+            // Inicia a transação
+            _transacao = _conexao.BeginTransaction();
+            _transacaoAtiva = true;
+        }
+        public void Commit()
+        {
+            if (!_transacaoAtiva)
+            {
+                throw new Exception("Não há transação ativa para ser finalizada.");
+            }
+
+            _transacao.Commit();
+            _transacao = null;
+            _transacaoAtiva = false;
+        }
+
+        public void Rollback()
+        {
+            if (!_transacaoAtiva)
+            {
+                throw new Exception("Não há transação ativa para ser cancelada.");
+            }
+
+            _transacao.Rollback();
+            _transacao = null;
+            _transacaoAtiva = false;
+        }
+
+
 
         public String StringConexao
         {

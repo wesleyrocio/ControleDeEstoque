@@ -110,10 +110,9 @@ namespace DAL
             if (enumPesquisarPor == ClientePesquisarPor.codigo) { tipoPesquisa = TipoPesquisa.exata; }
 
             string sql = "select *   from cliente where " +
-            pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor"; 
-          
+            pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor";
 
-            return DALUtil.BuscaResultadoDataTable([valor], sql, conexao); 
+            return DALUtil.BuscaResultadoDataTable([valor], sql, conexao);
         }
         private static string[] populaPesquisarPor()
         {

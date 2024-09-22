@@ -92,10 +92,7 @@ namespace BLL
 
             DALFornecedor DALmodelo = new DALFornecedor(conexao);
             DALmodelo.Incluir(modelo);
-        }
-
-       
-
+        }    
         public void Alterar(ModeloFornecedor modelo)
         {
             if (modelo.ForCod <= 0)

@@ -44,14 +44,28 @@ namespace EnumsCompartilhados
         numeroParcelas   ,
         status           ,
         codFornecedor    ,
-        nomeFornecedo    ,
+        nomeFornecedor    ,
         codTipoPagamento ,
-        nomeTipoPagamento
+        nomeTipoPagamento ,
+        total
 
 
     }
+
+    public enum ItensCompraPesquisaPor
+    {
+        codigo,
+        fornecedor,
+        compra
+    }
+
+    public enum ParcelasCompraPesquisaPor
+    {
+        codigo,
+        compra
+    }
     public enum Operacao { inserir, alterar, localizar, excluir, cancelar }
-    public enum FormEstado { branco, edicao, posconsulta }
+    public enum FormEstado { branco, edicao, posconsulta, preEdicao }
     public enum PessoaTipo { fisica, juridica}
 
     

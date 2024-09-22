@@ -25,7 +25,6 @@ namespace DAL
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "insert into Compra(" +
-                "com_cod       , " +
                 "com_data      , " +
                 "com_nfiscal   , " +
                 "com_total     , " +
@@ -35,7 +34,6 @@ namespace DAL
                 "tpa_cod         " +
               
                 ") values (" +
-                 "@ComCod       , " +
                  "@ComData      , " +
                  "@ComNfiscal   , " +
                  "@ComTotal     , " +
@@ -46,9 +44,26 @@ namespace DAL
                  "); select @@IDENTITY;";
 
             AdicionaParametros(modelo, cmd);
-            conexao.Conectar();
+            if (conexao.TansasaoAtiva)
+            {
+                cmd.Transaction = conexao.Transacao;
+            }
+            else
+            {
+                conexao.Conectar();
+            }
+
             modelo.ComCod = Convert.ToInt32(cmd.ExecuteScalar());
-            conexao.Desconectar();
+        
+            modelo.ListaItens.ForEach(item => item.Compra.ComCod = modelo.ComCod);
+            modelo.Parcelas.ForEach(parcela => parcela.ComCod = modelo.ComCod);
+
+            //var dalItensCompra = new DALItensCompra(conexao);
+            //dalItensCompra.UpSert(modelo.ListaItens);
+            //var dalParcelasCompra = new DALParcelasCompra(conexao);
+            //dalParcelasCompra.UpSert(modelo.Parcelas);
+
+
         }
 
         private void AdicionaParametros(ModeloCompra modelo, SqlCommand cmd)
@@ -96,13 +111,54 @@ namespace DAL
             conexao.Desconectar();
         }
 
-        public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedo, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
+        public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedor, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
         {
-            string sql = DefinePesquisa(valor, enumPesquisarPor,  tipoPesquisa);         
+            string sql = DefinePesquisa(valor, enumPesquisarPor,  tipoPesquisa);
+            DataTable dt = new DataTable();
 
-            
-            return DALUtil.BuscaResultadoDataTable(valor, sql, conexao);
-            
+            switch (enumPesquisarPor)
+            {
+                case CompraPesquisarPor.codTipoPagamento:
+                case CompraPesquisarPor.codFornecedor:
+                case CompraPesquisarPor.notaFiscal:
+                case CompraPesquisarPor.numeroParcelas:
+                case CompraPesquisarPor.codigo:
+                    {
+                        int[] valorConvert = new int[valor.Length];
+                        valorConvert[0] = Convert.ToInt32(valor[0]);
+                        if (valor.Length > 1) valorConvert[1] = Convert.ToInt32(valor[1]);
+                        dt = DALUtil.BuscaResultadoDataTable(valorConvert, sql, conexao);
+                        break;                       
+                    }
+                case CompraPesquisarPor.data:
+                    {
+                        DateTime[] valorConvert = new DateTime[valor.Length];
+                        valorConvert[0] = Convert.ToDateTime(valor[0]);
+                        if (valor.Length>1) valorConvert[1] = Convert.ToDateTime(valor[1]);
+                        dt = DALUtil.BuscaResultadoDataTable(valorConvert, sql, conexao);
+                        break;
+                    }
+                case CompraPesquisarPor.nomeTipoPagamento:
+                case CompraPesquisarPor.nomeFornecedor:
+                case CompraPesquisarPor.status:
+                    {
+                        var valorConvert = Convert.ToString(valor[0]);
+                        dt = DALUtil.BuscaResultadoDataTable([valorConvert], sql, conexao);
+                        break;
+                    }
+                case CompraPesquisarPor.total:
+                    {
+                        Double[] valorConvert = new Double[valor.Length];
+                        valorConvert[0] = Convert.ToDouble(valor[0]);
+                        if (valor.Length > 1) valorConvert[1] = Convert.ToDouble(valor[1]);
+                        dt = DALUtil.BuscaResultadoDataTable(valorConvert, sql, conexao);
+                        break;
+                      
+                    }
+            }
+
+            return dt;
+
         }
 
         private string DefinePesquisa(string[] valor, CompraPesquisarPor enumPesquisarPor,  TipoPesquisa tipoPesquisa)
@@ -110,8 +166,7 @@ namespace DAL
     
             
             
-            if (tipoPesquisa == TipoPesquisa.aproximada) { valor[0] = "%" + valor[0] + "%"; }
-         //   if (tipoPesquisa == TipoPesquisa.intervalo) { valor[0] = valor[0] + " and " + valor[1]; }
+            if (tipoPesquisa == TipoPesquisa.aproximada) { valor[0] = "%" + valor[0] + "%"; }          
             if (valor[0] == "") { valor[0] = "%%%"; }
 
             if (enumPesquisarPor == CompraPesquisarPor.codigo) { tipoPesquisa = TipoPesquisa.exata; }
@@ -142,7 +197,7 @@ namespace DAL
             pesquisarPor[(int)CompraPesquisarPor.numeroParcelas     ] = "com_nparcelas"          ;
             pesquisarPor[(int)CompraPesquisarPor.status             ] = "com_status"             ;
             pesquisarPor[(int)CompraPesquisarPor.codFornecedor      ] = "compra.for_cod"         ;
-            pesquisarPor[(int)CompraPesquisarPor.nomeFornecedo      ] = "fornecedor.for_nome"    ;
+            pesquisarPor[(int)CompraPesquisarPor.nomeFornecedor     ] = "fornecedor.for_nome"    ;
             pesquisarPor[(int)CompraPesquisarPor.codTipoPagamento   ] = "compra.tpa_cod"         ;
             pesquisarPor[(int)CompraPesquisarPor.nomeTipoPagamento  ] = "tipopagamento.tpa_nome" ;
             return pesquisarPor;

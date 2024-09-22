@@ -89,7 +89,7 @@ namespace DAL
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "delete from Fornecedor where cli_cod=@codigo;";
+            cmd.CommandText = "delete from fornecedor where for_cod=@codigo;";
             cmd.Parameters.AddWithValue("@codigo", codigo);
 
             conexao.Conectar();

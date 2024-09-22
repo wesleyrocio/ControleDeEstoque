@@ -35,6 +35,11 @@ namespace Ferramentas
         {
             return addMascaraNumeros(cep, mascara, curinga);
         }
+
+        public static string Monetario(string cep, string mascara = "#.###.###,##", string curinga = "#")
+        {
+            return addMascaraNumeros(cep, mascara, curinga);
+        }
         public static string addMascaraNumeros(string valor, string mascara, string curinga="#")
         {
             if (string.IsNullOrEmpty(valor) || string.IsNullOrEmpty(mascara))
@@ -85,6 +90,16 @@ namespace Ferramentas
         {
             //return Regex.Replace(valor, @"[^a-zA-Z]", "");
             return new string(valor.Where(c => char.IsLetter(c) && !char.IsPunctuation(c)).ToArray()).Trim();
+        }
+        public static string RetiraMoeda(this string txt)
+        {
+            string texto;
+
+            if (txt.Trim().Length <= 0) { txt = "0"; }
+            txt = txt.Replace("R$", "").Trim();
+          
+            return txt;
+
         }
 
     }

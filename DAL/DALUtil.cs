@@ -23,23 +23,7 @@ namespace DAL
 
             }
 
-            /* 
-
-             cmd.Parameters.AddWithValue("@cli_cod", modelo.CliCod         );            
-             cmd.Parameters.AddWithValue("@cli_nome", modelo.CliNome        );
-             cmd.Parameters.AddWithValue("@cli_cpfcnpj", modelo.CliCpfCnpj     );
-             cmd.Parameters.AddWithValue("@cli_rgie", modelo.CliRgIe        );
-             cmd.Parameters.AddWithValue("@cli_rsocial", modelo.CliRsocial     );
-             cmd.Parameters.AddWithValue("@cli_tipo", modelo.CliTipo        );
-             cmd.Parameters.AddWithValue("@cli_cep", modelo.CliCep         );
-             cmd.Parameters.AddWithValue("@cli_endereco", modelo.CliEndereco    );
-             cmd.Parameters.AddWithValue("@cli_bairro", modelo.CliBairro      );
-             cmd.Parameters.AddWithValue("@cli_fone", modelo.CliFone        );
-             cmd.Parameters.AddWithValue("@cli_cel", modelo.CliCel         );
-             cmd.Parameters.AddWithValue("@cli_email", modelo.CliEmail       );
-             cmd.Parameters.AddWithValue("@cli_endnumero", modelo.CliEndNumero   );
-             cmd.Parameters.AddWithValue("@cli_cidade", modelo.CliCidade      );
-             cmd.Parameters.AddWithValue("@cli_estado", modelo.CliEstado      );*/
+           
         }
 
         public static DataTable BuscaResultadoDataTable(string[] valor, string sql, DALConexao conexao)
@@ -47,19 +31,69 @@ namespace DAL
             var cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = sql;
-            cmd.Parameters.AddWithValue("@Valor", valor);
-          
-            if (valor.Length > 1) 
+            cmd.Parameters.AddWithValue("@Valor", valor[0]);
+
+            if (valor.Length > 1)
             {
-                cmd.Parameters.AddWithValue("@Valor02",valor[1]);
-            }           
+                cmd.Parameters.AddWithValue("@Valor02", valor[1]);
+            }
+
+            return DataTableMotorPesquisa(conexao, cmd);
+        }
+
+        public static DataTable BuscaResultadoDataTable(double[] valor, string sql, DALConexao conexao)
+        {
+            var cmd = new SqlCommand();
+            cmd.Connection = conexao.ObjetoConexao;
+            cmd.CommandText = sql;
+            cmd.Parameters.AddWithValue("@Valor", valor);
+
+            if (valor.Length > 1)
+            {
+                cmd.Parameters.AddWithValue("@Valor02", valor[1]);
+            }
+
+            return DataTableMotorPesquisa(conexao, cmd);
+        }
+        public static DataTable BuscaResultadoDataTable(DateTime[] valor, string sql, DALConexao conexao)
+        {
+            var cmd = new SqlCommand();
+            cmd.Connection = conexao.ObjetoConexao;
+            cmd.CommandText = sql;
            
+            cmd.Parameters.AddWithValue("@Valor", valor[0]);
+
+            if (valor.Length > 1)
+            {
+                cmd.Parameters.AddWithValue("@Valor02", valor[1]);
+            }
+
+            return DataTableMotorPesquisa(conexao, cmd);
+        }
+        public static DataTable BuscaResultadoDataTable(int[] valor, string sql, DALConexao conexao)
+        {
+            var cmd = new SqlCommand();
+            cmd.Connection = conexao.ObjetoConexao;
+            cmd.CommandText = sql;
+           
+            cmd.Parameters.AddWithValue("@Valor", valor[0]);
+
+            if (valor.Length > 1)
+            {
+                cmd.Parameters.AddWithValue("@Valor02", valor[1]);
+            }
+            return DataTableMotorPesquisa(conexao, cmd);
+        }
+
+        private static DataTable DataTableMotorPesquisa(DALConexao conexao, SqlCommand cmd)
+        {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             conexao.Desconectar();
             return dt;
         }
+
         public static SqlDataReader buscaResultadoDataReader(int codigo, string sql, DALConexao conexao)
         {
             SqlCommand cmd = new SqlCommand();

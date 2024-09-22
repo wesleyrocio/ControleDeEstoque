@@ -53,6 +53,7 @@
             configuraçãoDoBancoDeDadosToolStripMenuItem = new ToolStripMenuItem();
             backupDoBancoDeDadosToolStripMenuItem = new ToolStripMenuItem();
             sobreToolStripMenuItem = new ToolStripMenuItem();
+            compraToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -184,6 +185,7 @@
             // 
             // movimentacaoToolStripMenuItem
             // 
+            movimentacaoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { compraToolStripMenuItem });
             movimentacaoToolStripMenuItem.Name = "movimentacaoToolStripMenuItem";
             movimentacaoToolStripMenuItem.Size = new Size(122, 24);
             movimentacaoToolStripMenuItem.Text = "Movimentação";
@@ -220,6 +222,13 @@
             sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             sobreToolStripMenuItem.Size = new Size(62, 24);
             sobreToolStripMenuItem.Text = "Sobre";
+            // 
+            // compraToolStripMenuItem
+            // 
+            compraToolStripMenuItem.Name = "compraToolStripMenuItem";
+            compraToolStripMenuItem.Size = new Size(224, 26);
+            compraToolStripMenuItem.Text = "Compra";
+            compraToolStripMenuItem.Click += compraToolStripMenuItem_Click;
             // 
             // FrmPrincipal
             // 
@@ -265,5 +274,6 @@
         private ToolStripMenuItem backupDoBancoDeDadosToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem tipoDePagamentoToolStripMenuItem;
+        private ToolStripMenuItem compraToolStripMenuItem;
     }
 }
