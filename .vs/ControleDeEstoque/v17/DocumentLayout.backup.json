@@ -3,11 +3,31 @@
   "WorkspaceRootPath": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\modelo\\modeloitensvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|solutionrelative:modelo\\modeloitensvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\modelo\\modeloitenscompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|solutionrelative:modelo\\modeloitenscompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\modelo\\modeloparcelascompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|solutionrelative:modelo\\modeloparcelascompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\modelo\\modeloparcelasvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{053791E6-350B-4567-B7D8-FE67A2F5A33E}|Modelo\\Modelo.csproj|solutionrelative:modelo\\modeloparcelasvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E097C81-2CB9-4CE8-9E68-D5A0F761BBA4}|BLL\\BLL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\bll\\bllcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E097C81-2CB9-4CE8-9E68-D5A0F761BBA4}|BLL\\BLL.csproj|solutionrelative:bll\\bllcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|solutionrelative:gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|solutionrelative:gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -18,11 +38,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 308,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Bookmark",
@@ -31,27 +55,65 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ModeloItensVenda.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloItensVenda.cs",
+              "RelativeDocumentMoniker": "Modelo\\ModeloItensVenda.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloItensVenda.cs",
+              "RelativeToolTip": "Modelo\\ModeloItensVenda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T01:35:41.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ModeloParcelasVenda.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloParcelasVenda.cs",
+              "RelativeDocumentMoniker": "Modelo\\ModeloParcelasVenda.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloParcelasVenda.cs",
+              "RelativeToolTip": "Modelo\\ModeloParcelasVenda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T01:29:00.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BLLCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\BLL\\BLLCompra.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\BLL\\BLLCompra.cs",
+              "RelativeToolTip": "BLL\\BLLCompra.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAYwAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T21:53:19.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FrmMovimentacaoCompra.cs",
               "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
               "RelativeDocumentMoniker": "GUI\\FrmMovimentacaoCompra.cs",
               "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
               "RelativeToolTip": "GUI\\FrmMovimentacaoCompra.cs",
-              "ViewState": "AgIAAHYBAAAAAAAAAAAhwNYBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEBAAAAAAAAAAAEwDwBAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-29T21:05:56.156Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "FrmMovimentacaoCompra.cs [Projeto]",
               "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
               "RelativeDocumentMoniker": "GUI\\FrmMovimentacaoCompra.cs",
               "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs [Projeto]",
               "RelativeToolTip": "GUI\\FrmMovimentacaoCompra.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T21:05:53.36Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2024-09-29T21:05:53.36Z"
             }
           ]
         },
@@ -66,6 +128,53 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "7f9b6cac-9f7d-42f5-95f9-86bcd55dea1c",
+        "Display": 0,
+        "X": 54,
+        "Y": 204,
+        "Width": 959,
+        "Height": 1305,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ModeloParcelasCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloParcelasCompra.cs",
+              "RelativeDocumentMoniker": "Modelo\\ModeloParcelasCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloParcelasCompra.cs",
+              "RelativeToolTip": "Modelo\\ModeloParcelasCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T01:30:30.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModeloItensCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloItensCompra.cs",
+              "RelativeDocumentMoniker": "Modelo\\ModeloItensCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\Modelo\\ModeloItensCompra.cs",
+              "RelativeToolTip": "Modelo\\ModeloItensCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T01:35:58.02Z",
+              "EditorCaption": ""
             }
           ]
         }
