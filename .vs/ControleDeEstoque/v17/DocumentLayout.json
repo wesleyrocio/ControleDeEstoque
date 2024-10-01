@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E097C81-2CB9-4CE8-9E68-D5A0F761BBA4}|BLL\\BLL.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\bll\\bllcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E097C81-2CB9-4CE8-9E68-D5A0F761BBA4}|BLL\\BLL.csproj|solutionrelative:bll\\bllcompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|solutionrelative:gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|k:\\dados\\cursos\\c#\\controle de estoque\\controledeestoque\\gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{42DF097F-38CE-4836-BE43-776B58885CA7}|GUI\\GUI.csproj|solutionrelative:gui\\frmmovimentacaocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 308,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BLLCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\BLL\\BLLCompra.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\BLL\\BLLCompra.cs*",
+              "RelativeToolTip": "BLL\\BLLCompra.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwFUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T21:53:19.339Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
@@ -18,6 +44,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmMovimentacaoCompra.cs",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
+              "RelativeDocumentMoniker": "GUI\\FrmMovimentacaoCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
+              "RelativeToolTip": "GUI\\FrmMovimentacaoCompra.cs",
+              "ViewState": "AgIAABEBAAAAAAAAAAAEwDwBAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T21:05:56.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmMovimentacaoCompra.cs [Projeto]",
+              "DocumentMoniker": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs",
+              "RelativeDocumentMoniker": "GUI\\FrmMovimentacaoCompra.cs",
+              "ToolTip": "K:\\Dados\\Cursos\\C#\\Controle de Estoque\\ControleDeEstoque\\GUI\\FrmMovimentacaoCompra.cs [Projeto]",
+              "RelativeToolTip": "GUI\\FrmMovimentacaoCompra.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T21:05:53.36Z",
+              "EditorCaption": " [Projeto]"
             }
           ]
         },

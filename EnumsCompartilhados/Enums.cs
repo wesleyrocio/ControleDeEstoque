@@ -47,7 +47,8 @@ namespace EnumsCompartilhados
         nomeFornecedor    ,
         codTipoPagamento ,
         nomeTipoPagamento ,
-        total
+        total,
+        todas
 
 
     }

@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
@@ -26,6 +27,7 @@ namespace GUI
 
 
         public double totalCompra = 0;
+        public int itemCod = 0;
         public FrmMovimentacaoCompra()
         {
             InitializeComponent();
@@ -94,6 +96,7 @@ namespace GUI
                 modelo.TipoPagamento.TpaCod = Convert.ToInt32(form.cbTipoPagamento.SelectedValue);
                 modelo.TipoPagamento.TpaNome = form.cbTipoPagamento.SelectedText;
                 modelo.ListaItens = form.colecaoItens;
+                modelo.ListaItensDelete = form.colecaoItensDeletados;
                 modelo.Parcelas = form.colecaoParcelas;
             }
             #endregion
@@ -156,6 +159,7 @@ namespace GUI
                 form.colecaoItens.Clear();
                 form.colecaoParcelas.Clear();
                 form.colecaoItensDeletados.Clear();
+                form.itemCod = 0;
 
                 AtualizaDGVParcelas();
                 AtualizaDGVItens();
@@ -264,7 +268,9 @@ namespace GUI
             static public void Excluir()
             {
                 form.operacao = Operacao.excluir;
-                Deletar(Convert.ToInt32(form.tbCodigo.Text));
+                var modelo = new ModeloCompra();
+                preencheModeloComCampos(modelo);
+                Deletar(modelo);
             }
 
             static public void InserirFormulario()
@@ -301,12 +307,16 @@ namespace GUI
 
             static public void Update(ModeloCompra modelo)
             {
-
+                var cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                var bll = new BLLCompra(cx);
                 try
                 {
-                    var cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                    var bll = new BLLCompra(cx);
+
+                    cx.Conectar();
+                    cx.IniciarTransacao();
                     bll.Alterar(modelo);
+                    cx.Commit();
+                    cx.Desconectar();
                     MessageBox.Show("Cadastro alterado");
                     alteraBotoes(FormEstado.posconsulta);
 
@@ -316,27 +326,33 @@ namespace GUI
 
                     MessageBox.Show("Não foi possível alterar registro. Detalhes:" + erro.Message);
                     alteraBotoes(FormEstado.edicao);
+                    cx.Rollback();
                 }
 
             }
 
-            static public void Deletar(int codigo)
+            static public void Deletar(ModeloCompra modelo)
             {
 
                 DialogResult d = MessageBox.Show("Deseja Excluir?", "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (d == DialogResult.No) return;
-
+                var cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                var bll = new BLLCompra(cx);
                 try
                 {
-                    DALConexao cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                    var bll = new BLLCompra(cx);
-                    bll.Excluir(codigo);
+                    cx.Conectar();
+                    cx.IniciarTransacao();
+                    bll.Excluir(modelo);
+                    cx.Commit();
+                    cx.Desconectar();
                     MessageBox.Show("Registro Excluido");
                     limparCampos();
                     alteraBotoes(FormEstado.branco);
                 }
                 catch (Exception erro)
                 {
+                    cx.Rollback();
+                    cx.Desconectar();
                     MessageBox.Show("Não foi possível excluir registro! \n O registro está sendo utilizado em outro local. Detalhes:" + erro.Message);
                 }
 
@@ -344,22 +360,25 @@ namespace GUI
 
             static public void Localizar()
             {
-                //var frmConsultaFornecedor = new FrmConsultaFornecedor();
-                //frmConsultaFornecedor.ShowDialog();
-                //if (frmConsultaFornecedor.codigo <= 0)
-                //{
-                //    limparCampos();
-                //    alteraBotoes(FormEstado.branco);
-                //    frmConsultaFornecedor.Dispose();
-                //    return;
-                //}
-                //var cx = new DALConexao(DadosDaConexao.StringDeConexao);
-                //var bll = new BLLFornecedor(cx);
-                //var modelo = bll.CarregarModelo(frmConsultaFornecedor.codigo);
-                //preencheCamposComModelo(modelo);
-                //frmConsultaFornecedor.Dispose();
-                //form.operacao = Operacao.localizar;
-                //alteraBotoes(FormEstado.posconsulta);
+                var frmConsultaCompra = new FrmConsultaCompra();
+                frmConsultaCompra.ShowDialog();
+                if (frmConsultaCompra.codigo <= 0)
+                {
+                    limparCampos();
+                    alteraBotoes(FormEstado.branco);
+                    frmConsultaCompra.Dispose();
+                    return;
+                }
+                var cx = new DALConexao(DadosDaConexao.StringDeConexao);
+                var bll = new BLLCompra(cx);
+                var modelo = bll.CarregarModelo(frmConsultaCompra.codigo);
+
+                preencheCamposComModelo(modelo);
+                frmConsultaCompra.Dispose();
+                form.operacao = Operacao.localizar;
+
+
+                alteraBotoes(FormEstado.posconsulta);
             }
 
             #endregion
@@ -452,13 +471,14 @@ namespace GUI
 
 
                 var novoItem = new ModeloItensCompra();
+                int.TryParse(form.tbCodigo.Text, out int cod_compra);
 
-                novoItem.ItcCod = 0;
+                novoItem.ItcCod = form.itemCod;
                 novoItem.Produto.ProCod = Convert.ToInt32(form.tbCodProduto.Text);
                 novoItem.Produto.ProNome = form.lbProduto.Text;
                 novoItem.ItcQtde = Convert.ToDouble(form.tbQuantidade.Text);
                 novoItem.ItcValor = Convert.ToDouble(form.tbValorUnitario.Text.RetiraMoeda());
-                novoItem.Compra.ComCod = 0;
+                novoItem.Compra.ComCod = cod_compra;
                 novoItem.Compra.ComValor = 0;
 
                 form.totalCompra += novoItem.Total;
@@ -520,6 +540,21 @@ namespace GUI
             {
                 if (indice < 0) return false;
                 form.totalCompra -= form.colecaoItens[indice].Total;
+                //if (form.colecaoItens[indice].ItcCod != 0)
+                //{
+                //    form.colecaoItensDeletados.Add(form.colecaoItens[indice]);
+                //}
+                form.colecaoItens.RemoveAt(indice);
+                form.tbTotal.Text = form.totalCompra.ToString("C2");
+                GeraParcelas();
+                AtualizaDGVParcelas();
+                AtualizaDGVItens();
+                return true;
+            }
+            static public bool DeletaItem(int indice)
+            {
+                if (indice < 0) return false;
+                form.totalCompra -= form.colecaoItens[indice].Total;
                 if (form.colecaoItens[indice].ItcCod != 0)
                 {
                     form.colecaoItensDeletados.Add(form.colecaoItens[indice]);
@@ -535,7 +570,9 @@ namespace GUI
             {
                 if (indice < 0) return false;
 
+                form.itemCod = form.colecaoItens[indice].ItcCod;
                 form.tbCodProduto.Text = form.colecaoItens[indice].Produto.ProCod.ToString();
+                form.lbProduto.Text = form.colecaoItens[indice].Produto.ProNome.ToString();
                 form.tbQuantidade.Text = form.colecaoItens[indice].ItcQtde.ToString();
                 form.tbValorUnitario.Text = form.colecaoItens[indice].ItcValor.ToString("C2");
                 form.totalCompra -= form.colecaoItens[indice].ItcValor;
@@ -584,6 +621,8 @@ namespace GUI
                 DateTime dtInicial = form.dtpDataInicialPagamento.Value;
                 form.colecaoParcelas = new ColecaoParcelasCompra();
                 var dt = dtInicial;
+                int.TryParse(form.tbCodigo.Text, out int codCompra);
+
 
                 for (int i = 0; i < parcelas; i++)
                 {
@@ -591,7 +630,7 @@ namespace GUI
 
                     var parcela = new ModeloParcelasCompra()
                     {
-
+                        ComCod = codCompra,
                         PcoValor = valorParcela,
                         PcoDataVecto = dt
                     };
@@ -789,10 +828,7 @@ namespace GUI
             Control.Excluir();
         }
 
-        private void buttonSalvar_Click(object sender, EventArgs e)
-        {
-            Control.Salvar();
-        }
+
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
@@ -850,7 +886,7 @@ namespace GUI
             if (dgvItens.CurrentRow.Index < 0) return;
             if (MessageBox.Show("Tem Certeza de que quer delerar o item?", "Confirmação", MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
-            if (!Control.RemoveItem(dgvItens.CurrentRow.Index))
+            if (!Control.DeletaItem(dgvItens.CurrentRow.Index))
                 MessageBox.Show("Selecione um item para deletar!", "Ação Inválida", MessageBoxButtons.OK);
         }
         private void dgvItens_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -861,7 +897,6 @@ namespace GUI
 
         private void cbParcelas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
 
@@ -871,7 +906,7 @@ namespace GUI
 
             Control.GeraParcelas();
             Control.AtualizaDGVParcelas();
-            Control.atualizaComboxNumeroParcelas();
+            // Control.atualizaComboxNumeroParcelas();
 
         }
 

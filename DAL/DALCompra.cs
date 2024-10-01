@@ -43,16 +43,9 @@ namespace DAL
                  "@TpaCod         " +
                  "); select @@IDENTITY;";
 
-            AdicionaParametros(modelo, cmd);
-            if (conexao.TansasaoAtiva)
-            {
-                cmd.Transaction = conexao.Transacao;
-            }
-            else
-            {
-                conexao.Conectar();
-            }
+            DALUtil.VerificaTransacao(cmd,conexao);
 
+            AdicionaParametros(modelo, cmd);
             modelo.ComCod = Convert.ToInt32(cmd.ExecuteScalar());
         
             modelo.ListaItens.ForEach(item => item.Compra.ComCod = modelo.ComCod);
@@ -95,9 +88,9 @@ namespace DAL
 
             AdicionaParametros(modelo, cmd);
 
-            conexao.Conectar();
+            DALUtil.VerificaTransacao(cmd, conexao);
             cmd.ExecuteNonQuery();
-            conexao.Desconectar();
+       
         }
         public void Excluir(int codigo)
         {
@@ -106,9 +99,9 @@ namespace DAL
             cmd.CommandText = "delete from compra where com_cod=@codigo;";
             cmd.Parameters.AddWithValue("@codigo", codigo);
 
-            conexao.Conectar();
+            DALUtil.VerificaTransacao(cmd, conexao);
             cmd.ExecuteNonQuery();
-            conexao.Desconectar();
+           
         }
 
         public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedor, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
@@ -138,6 +131,7 @@ namespace DAL
                         dt = DALUtil.BuscaResultadoDataTable(valorConvert, sql, conexao);
                         break;
                     }
+                case CompraPesquisarPor.todas:
                 case CompraPesquisarPor.nomeTipoPagamento:
                 case CompraPesquisarPor.nomeFornecedor:
                 case CompraPesquisarPor.status:
@@ -200,9 +194,10 @@ namespace DAL
             pesquisarPor[(int)CompraPesquisarPor.nomeFornecedor     ] = "fornecedor.for_nome"    ;
             pesquisarPor[(int)CompraPesquisarPor.codTipoPagamento   ] = "compra.tpa_cod"         ;
             pesquisarPor[(int)CompraPesquisarPor.nomeTipoPagamento  ] = "tipopagamento.tpa_nome" ;
+            pesquisarPor[(int)CompraPesquisarPor.todas              ] = "fornecedor.for_nome"    ;
             return pesquisarPor;
         }
-        private static void preencheModelocomDataReader(ModeloCompra modelo, SqlDataReader reg)
+        private void preencheModelocomDataReader(ModeloCompra modelo, SqlDataReader reg)
         {
             modelo.ComCod                 = Convert.ToInt32    (reg["com_cod"]);
             modelo.ComData                = Convert.ToDateTime (reg["com_data"]);
@@ -212,24 +207,24 @@ namespace DAL
             modelo.ComStatus              = Convert.ToString   (reg["com_status"]);
             
             DALFornecedor.preencheModelocomDataReader(modelo.Fornecedor, reg);
-            DALTipoPagamento.preencherModeloComDataReader(modelo.TipoPagamento, reg);          
-          
-            
+            DALTipoPagamento.preencherModeloComDataReader(modelo.TipoPagamento, reg);
+            var dalParcelas = new DALParcelasCompra(conexao);
+            modelo.Parcelas = dalParcelas.LocalizarListaItens(modelo.ComCod);
+            var dalItens = new DALItensCompra(conexao);
+            modelo.ListaItens = dalItens.LocalizarListaItens(modelo.ComCod);   
         }
         public ModeloCompra CarregaModelo(int codigo)
         {
-
             string sql = DefinePesquisa([codigo.ToString()], CompraPesquisarPor.codigo,TipoPesquisa.exata ); 
-            ModeloCompra modelo = new ModeloCompra();
+            ModeloCompra modelo = new ModeloCompra();  
             SqlDataReader reg = DALUtil.buscaResultadoDataReader(codigo, sql, conexao);
-
             if (!reg.HasRows) { return modelo; }
             reg.Read();
             preencheModelocomDataReader(modelo, reg);
-
             conexao.Desconectar();
             return modelo;
-
         }
+
+ 
     }
 }

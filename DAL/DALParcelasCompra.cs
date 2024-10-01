@@ -38,38 +38,16 @@ namespace DAL
 
                  "); select @@IDENTITY;";
 
-            verificaTransacao(cmd);
+            DALUtil.VerificaTransacao(cmd, conexao);
             AdicionaParametros(modelo, cmd);
             modelo.PcoCod = Convert.ToInt32(cmd.ExecuteScalar());
         }
         public void Alterar(ModeloParcelasCompra modelo)
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "update fornecedor    set " +
-                "pco_valor     = @PcoValor        , " +
-                "pco_datapagto = @PcoDataPagto    , " +
-                "pco_datavecto = @PcoDataVecto    , " +
-                "com_cod       = @ComCod            " +
-                "where pco_cod = @PcoCod          ;";
-           
-            verificaTransacao(cmd);
-            AdicionaParametros(modelo, cmd);
-            cmd.ExecuteNonQuery();
+            throw new NotImplementedException();
 
         }
-
-        private void verificaTransacao(SqlCommand cmd)
-        {
-            if (conexao.TansasaoAtiva)
-            {
-                cmd.Transaction = conexao.Transacao;
-            }
-            else
-            {
-                conexao.Conectar();
-            }
-        }
+     
 
         private void AdicionaParametros(ModeloParcelasCompra modelo, SqlCommand cmd)
         {
@@ -99,34 +77,24 @@ namespace DAL
             cmd.Parameters.AddWithValue("@ComCod",         modelo.ComCod         );
         }
 
-        public void UpSert(ColecaoParcelasCompra colecao)
+        public void Incluir(ColecaoParcelasCompra colecao)
         {
             foreach (var item in colecao)
-            {
-                if (item.PcoCod == 0)
-                {
-                    Incluir(item);
-
-                }
-                else
-                {
-                    Alterar(item);
-                }
+            {           
+                    Incluir(item);         
 
             }
         }
-
-        public void Excluir(int codigo)
+        public void Excluir(int codCompra)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
-            cmd.CommandText = "delete from parcelacompra where pco_cod=@codigo;";
-            cmd.Parameters.AddWithValue("@codigo", codigo);
-
-
+            cmd.CommandText = "delete from parcelascompra where com_cod=@codigo;";
+            cmd.Parameters.AddWithValue("@codigo", codCompra);
+            DALUtil.VerificaTransacao(cmd, conexao);
             cmd.ExecuteNonQuery();
-
         }
+  
 
         private static string[] populaPesquisarPor()
         {
@@ -137,11 +105,14 @@ namespace DAL
 
             return pesquisarPor;
         }
-        public DataTable Localizar(string valor, ParcelasCompraPesquisaPor enumPesquisarPor = ParcelasCompraPesquisaPor.compra, TipoPesquisa tipoPesquisa = TipoPesquisa.exata)
+        public DataTable Localizar(int valor, ParcelasCompraPesquisaPor enumPesquisarPor = ParcelasCompraPesquisaPor.compra, TipoPesquisa tipoPesquisa = TipoPesquisa.exata)
         {
-            if (tipoPesquisa == TipoPesquisa.aproximada) { valor = "%" + valor + "%"; }
-            if (valor == "") { valor = "%%%"; }
-            if (enumPesquisarPor == ParcelasCompraPesquisaPor.codigo) { tipoPesquisa = TipoPesquisa.exata; }
+           // if (tipoPesquisa == TipoPesquisa.aproximada) { valor = "%" + valor + "%"; }
+           // if (valor == "") { valor = "%%%"; }
+            if (enumPesquisarPor == ParcelasCompraPesquisaPor.codigo) 
+            { 
+                tipoPesquisa = TipoPesquisa.exata;
+            }
 
             string sql = "select   " +
                 "pco_cod      ," +
@@ -169,7 +140,7 @@ namespace DAL
         public ColecaoParcelasCompra LocalizarListaItens(int codCompra)
         {
             var colecao = new ColecaoParcelasCompra();
-            DataTable dataTable = Localizar(codCompra.ToString());
+            DataTable dataTable = Localizar(codCompra);
             preencheModeloColecaoComDataTable(colecao, dataTable);
             return colecao;
 
@@ -178,15 +149,28 @@ namespace DAL
 
         public static void preencheModeloColecaoComDataTable(ColecaoParcelasCompra colecao, DataTable dt)
         {
-            colecao = dt.AsEnumerable().Select(row => new ModeloParcelasCompra
-            {
-                PcoCod       = Convert.ToInt32   (row ["pco_cod"       ]),
-                PcoValor     = Convert.ToDouble  (row ["pco_valor"     ]),
-                PcoDataPagto = Convert.ToDateTime(row ["pco_datapagto" ]),
-                PcoDataVecto = Convert.ToDateTime(row ["pco_datavecto" ]),
-               ComCod        = Convert.ToInt32   (row ["com_cod"       ])
+            //colecao = dt.AsEnumerable().Select(row => new ModeloParcelasCompra
+            //{
+            //    PcoCod = Convert.ToInt32(row["pco_cod"]),
+            //    PcoValor = Convert.ToDouble(row["pco_valor"]),
+            //    PcoDataPagto = Convert.ToDateTime(row["pco_datapagto"]),
+            //    PcoDataVecto = Convert.ToDateTime(row["pco_datavecto"]),
+            //    ComCod = Convert.ToInt32(row["com_cod"])
 
-            }).ToList() as ColecaoParcelasCompra;
+            //}).ToList() as ColecaoParcelasCompra;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var parcela = new ModeloParcelasCompra();
+                parcela.ComCod = Convert.ToInt32(row["com_cod"]);
+                parcela.PcoCod       = Convert.ToInt32   (row ["pco_cod"       ]);
+                parcela.PcoValor     = Convert.ToDouble  (row ["pco_valor"     ]);             
+
+                parcela.PcoDataPagto = (row["pco_datapagto"]  == DBNull.Value) ? null : Convert.ToDateTime(row ["pco_datapagto" ]);
+                parcela.PcoDataVecto = (row["pco_datavecto"]  == DBNull.Value) ? null : Convert.ToDateTime(row ["pco_datavecto" ]);
+                colecao.Add(parcela);
+            }
+
         }
         public ModeloParcelasCompra CarregaModelo(int codigo)
         {

@@ -104,6 +104,7 @@
             buttonCancelar.Text = "Cancelar";
             buttonCancelar.TextAlign = ContentAlignment.BottomCenter;
             buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += buttonCancelar_Click;
             // 
             // buttonSalvar
             // 
@@ -131,6 +132,7 @@
             buttonExcluir.Text = "Excluir";
             buttonExcluir.TextAlign = ContentAlignment.BottomCenter;
             buttonExcluir.UseVisualStyleBackColor = true;
+            buttonExcluir.Click += buttonExcluir_Click;
             // 
             // buttonAlterar
             // 
@@ -144,6 +146,7 @@
             buttonAlterar.Text = "Alterar";
             buttonAlterar.TextAlign = ContentAlignment.BottomCenter;
             buttonAlterar.UseVisualStyleBackColor = true;
+            buttonAlterar.Click += buttonAlterar_Click;
             // 
             // buttonLocalizar
             // 
@@ -157,6 +160,7 @@
             buttonLocalizar.Text = "Localizar";
             buttonLocalizar.TextAlign = ContentAlignment.BottomCenter;
             buttonLocalizar.UseVisualStyleBackColor = true;
+            buttonLocalizar.Click += buttonLocalizar_Click;
             // 
             // buttonInserir
             // 

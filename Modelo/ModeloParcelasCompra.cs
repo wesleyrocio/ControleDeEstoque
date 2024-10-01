@@ -8,11 +8,11 @@ namespace Modelo
 {
     public class ModeloParcelasCompra
     {
-        private int      pco_cod         ;
-        private double   pco_valor       ;
+        private int       pco_cod         ;
+        private double    pco_valor       ;
         private DateTime? pco_datapagto   ;
         private DateTime? pco_datavecto   ;
-        private int      com_cod         ;
+        private int       com_cod         ;
 
 
         public int      PcoCod       { get { return pco_cod        ; } set { pco_cod           = value; } } 

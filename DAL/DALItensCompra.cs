@@ -40,14 +40,7 @@ namespace DAL
               
                  "); select @@IDENTITY;";
 
-            if (conexao.TansasaoAtiva)
-            {
-                cmd.Transaction = conexao.Transacao;
-            }
-            else
-            {
-                conexao.Conectar();
-            }
+            DALUtil.VerificaTransacao(cmd, conexao);
 
             AdicionaParametros(modelo, cmd);           
             modelo.ItcCod = Convert.ToInt32(cmd.ExecuteScalar());     
@@ -63,18 +56,7 @@ namespace DAL
                 "pro_cod	=@ProCod         " +              
                 "where itc_cod    =  @ItcCod;";
 
-
-            if (conexao.TansasaoAtiva)
-            {
-                cmd.Transaction = conexao.Transacao;
-            }
-            else
-            {
-                conexao.Conectar();
-            }
-
-
-
+            DALUtil.VerificaTransacao(cmd, conexao);
             AdicionaParametros(modelo, cmd);  
             cmd.ExecuteNonQuery();
             
@@ -89,7 +71,7 @@ namespace DAL
             cmd.Parameters.AddWithValue("@ComCod"   , modelo.Compra.ComCod  );
         }
 
-        public void UpSert(ColecaoItensCompra colecao)
+        public void UpSert(ColecaoItensCompra colecao) // LEGADO (será retirado assim que terminar a implementação do novo processo)
         {
             foreach (var item in colecao) 
             {
@@ -106,17 +88,28 @@ namespace DAL
             }
         }
 
+        public void Excluir(ColecaoItensCompra colecao)
+        {
+            for (int i = 0; i < colecao.Count; i++) 
+            {
+                Excluir(colecao[i].ItcCod);
+            }
+
+        }
+
         public void Excluir(int codigo)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = "delete from itenscompra where itc_cod=@codigo;";
             cmd.Parameters.AddWithValue("@codigo", codigo);
+            DALUtil.VerificaTransacao(cmd, conexao);
 
-          
             cmd.ExecuteNonQuery();
-           
+
         }
+
+
 
         private static string[] populaPesquisarPor()
         {
@@ -139,9 +132,14 @@ namespace DAL
                 "itc_qtde	," +
                 "itc_valor	," +
                 "com_cod	," +
-                "pro_cod	 " +         
-                "from itenscompra where " +
+                "itenscompra.pro_cod pro_cod, " +
+                "pro_nome     " +
+                "from itenscompra "+
+                " inner join produto on produto.pro_cod=itenscompra.pro_cod"+
+                " where " +
             pesquisarPor[(int)enumPesquisarPor] + DALConstantes.operador[(int)tipoPesquisa] + " @Valor";
+            sql += " ORDER BY itc_cod";    
+                
 
             int[] valorInt = { Convert.ToInt32(valor) };
             return DALUtil.BuscaResultadoDataTable(valorInt, sql, conexao);
@@ -169,35 +167,37 @@ namespace DAL
             return colecao;          
         }
 
-        public static void preencheModeloColecaoComDataTable(ColecaoItensCompra colecao, DataTable dt)
+        private void preencheModeloColecaoComDataTable(ColecaoItensCompra colecao, DataTable dt)
         {            
-            colecao = dt.AsEnumerable().Select(row => new ModeloItensCompra
-            {
-                ItcCod = Convert.ToInt32(row["itc_cod"]),
-                ItcQtde = Convert.ToDouble(row["itc_qtde"]),
-                ItcValor = Convert.ToDouble(row["itc_valor"]),
-                Produto =new produto {ProCod= Convert.ToInt32(row["pro_cod"])},
-                Compra = new compra { ComCod = Convert.ToInt32(row["com_cod"])}
-             
-            }).ToList() as ColecaoItensCompra;   
-          
-            
-            //foreach(DataRow row in dt.Rows)
+            //colecao = dt.AsEnumerable().Select(row => new ModeloItensCompra
             //{
-            //    var modelo = new ModeloItensCompra();
-            //    modelo.ItcCod = Convert.ToInt32(row["itc_cod"]);
-            //    modelo.ItcQtde = Convert.ToDouble(row["itc_qtde"]);
-            //    modelo.ItcValor = Convert.ToDouble(row["itc_valor"]);
-            //    modelo.Produto.ProCod = Convert.ToInt32(row["pro_cod"]);
-            //    modelo.Compra.ComCod = Convert.ToInt32(row["com_cod"]); 
-            //}
+            //    ItcCod = Convert.ToInt32(row["itc_cod"]),
+            //    ItcQtde = Convert.ToDouble(row["itc_qtde"]),
+            //    ItcValor = Convert.ToDouble(row["itc_valor"]),
+            //    Produto =new produto {ProCod= Convert.ToInt32(row["pro_cod"])},
+            //    Compra = new compra { ComCod = Convert.ToInt32(row["com_cod"])}
+             
+            //}).ToList() as ColecaoItensCompra;
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var modelo = new ModeloItensCompra();
+                modelo.ItcCod = Convert.ToInt32(row["itc_cod"]);
+                modelo.ItcQtde = Convert.ToDouble(row["itc_qtde"]);
+                modelo.ItcValor = Convert.ToDouble(row["itc_valor"]);
+                modelo.Produto.ProCod = Convert.ToInt32(row["pro_cod"]);
+                modelo.Produto.ProNome = Convert.ToString(row["pro_nome"]);
+                modelo.Compra.ComCod = Convert.ToInt32(row["com_cod"]);
+                colecao.Add(modelo);
+            }
 
 
         }
         public ModeloItensCompra CarregaModelo(int codigo)
         {
 
-            string sql = "select  * from itenscompra where for_cod=@Valor";
+            string sql = "select  * from itenscompra where itc_cod=@Valor";
             var modelo = new ModeloItensCompra();
             SqlDataReader reg = DALUtil.buscaResultadoDataReader(codigo, sql, conexao);
 
@@ -209,6 +209,7 @@ namespace DAL
             return modelo;
 
         }
+
 
     }
 }

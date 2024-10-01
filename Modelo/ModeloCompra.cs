@@ -18,6 +18,7 @@ namespace Modelo
         private ModeloFornecedor         _fornecedor    ;
         private ModeloTipoPagamento      _tipoPagamento ;
         private ColecaoItensCompra      _colecaoItensCompra;
+        private ColecaoItensCompra      _colecaoItensCompraDelete;
         private ColecaoParcelasCompra   _colecaoParcelasCompra;
 
 
@@ -31,7 +32,11 @@ namespace Modelo
         public ModeloTipoPagamento TipoPagamento       { get { return  _tipoPagamento    ; } set { _tipoPagamento = value; } }
         
         public ColecaoItensCompra ListaItens           { get { return _colecaoItensCompra; } set { _colecaoItensCompra = value; } }
-       
+
+        public ColecaoItensCompra ListaItensDelete { get { return _colecaoItensCompraDelete; } set { _colecaoItensCompraDelete = value; } }
+
+
+
         public ColecaoParcelasCompra Parcelas          { get { return _colecaoParcelasCompra; } set { _colecaoParcelasCompra = value; } }  
         public ModeloCompra()
         {
@@ -44,6 +49,7 @@ namespace Modelo
             Fornecedor    = new ModeloFornecedor();
             TipoPagamento = new ModeloTipoPagamento();
             ListaItens    = new ColecaoItensCompra();
+            ListaItensDelete = new ColecaoItensCompra();
         }
 
     }

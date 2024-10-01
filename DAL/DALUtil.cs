@@ -25,6 +25,17 @@ namespace DAL
 
            
         }
+        public static void VerificaTransacao(SqlCommand cmd, DALConexao conexao)
+        {
+            if (conexao.TansasaoAtiva)
+            {
+                cmd.Transaction = conexao.Transacao;
+            }
+            else
+            {
+                conexao.Conectar();
+            }
+        }
 
         public static DataTable BuscaResultadoDataTable(string[] valor, string sql, DALConexao conexao)
         {
@@ -72,6 +83,8 @@ namespace DAL
         }
         public static DataTable BuscaResultadoDataTable(int[] valor, string sql, DALConexao conexao)
         {
+            conexao.Desconectar();
+            conexao.Conectar();
             var cmd = new SqlCommand();
             cmd.Connection = conexao.ObjetoConexao;
             cmd.CommandText = sql;
@@ -87,6 +100,8 @@ namespace DAL
 
         private static DataTable DataTableMotorPesquisa(DALConexao conexao, SqlCommand cmd)
         {
+         //   conexao.Desconectar();
+            
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);

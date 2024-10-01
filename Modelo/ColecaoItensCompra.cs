@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-    public class ColecaoItensCompra:List<ModeloItensCompra>
+    public class ColecaoItensCompra : List<ModeloItensCompra>
     {
       
     }

@@ -54,13 +54,15 @@ namespace BLL
         public void Incluir(ModeloCompra modelo)
         {
             validacoesGerais(modelo);
-
-            DALCompra DALmodelo = new DALCompra(conexao);
-            DALmodelo.Incluir(modelo);
-            DALItensCompra dalItensCompra = new DALItensCompra(conexao);
-            dalItensCompra.UpSert(modelo.ListaItens);
-            DALParcelasCompra dalParcelasCompra = new DALParcelasCompra(conexao);
-            dalParcelasCompra.UpSert(modelo.Parcelas);
+            var DALobj = new DALCompra(conexao);
+            var bllItensCompra = new BLLItensCompra(conexao);
+            var bllParcelasCompra = new BLLParcelasCompra(conexao);
+            
+            DALobj.Incluir(modelo);
+            
+            bllItensCompra.UpSert(modelo.ListaItens);
+        
+            bllParcelasCompra.Incluir(modelo.Parcelas);
 
 
         }
@@ -72,42 +74,35 @@ namespace BLL
             }
             validacoesGerais(modelo);
 
-            DALCompra DALobj = new DALCompra(conexao);
+            var DALobj = new DALCompra(conexao);
+            var ItensCompra = new BLLItensCompra(conexao);
+            var ParcelasCompra = new BLLParcelasCompra(conexao);
+          
             DALobj.Alterar(modelo);
+           
+            ItensCompra.UpSert(modelo.ListaItens);
+            ItensCompra.Excluir(modelo.ListaItensDelete);
+            
+          //  ParcelasCompra.Excluir(modelo.ComCod);
+            ParcelasCompra.Incluir(modelo.Parcelas);
         }
-        public bool verificaExisteNome(ModeloCompra modelo)
+       
+        public void Excluir(ModeloCompra modelo)
         {
+            var DALCompra = new DALCompra(conexao);
+            var ItensCompra = new BLLItensCompra(conexao);
+            var ParcelasCompra = new BLLParcelasCompra(conexao);
 
-            //DataTable dt = new DataTable();
-            //DALCompra DALobj = new DALCompra(conexao);
 
-            //dt = DALobj.Localizar(modelo.ForNome.Trim(), CompraPesquisarPor.nome, TipoPesquisa.exata);
-            //if (dt.Rows.Count > 0 && dt.Rows[0]["for_cod"].ToString() != modelo.ForCod.ToString())
-            //    return true;
-            return false;
+            ParcelasCompra.Excluir(modelo.ComCod);
+            ItensCompra.Excluir(modelo.ListaItens);
+            DALCompra.Excluir(modelo.ComCod);
+
         }
-
-        public bool verificaExisteRazaoSocial(ModeloCompra modelo)
-        {
-
-            //DataTable dt = new DataTable();
-            //DALCompra DALobj = new DALCompra(conexao);
-
-            //dt = DALobj.Localizar(modelo.ForRsocial.Trim(), CompraPesquisarPor.razaoSocial, TipoPesquisa.exata);
-            //if (dt.Rows.Count > 0 && dt.Rows[0]["for_cod"].ToString() != modelo.ForCod.ToString())
-            //    return true;
-            return false;
-        }
-        public void Excluir(int codigo)
+        public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedor, TipoPesquisa tipoPesquisa = TipoPesquisa.aproximada)
         {
             DALCompra DALobj = new DALCompra(conexao);
-            DALobj.Excluir(codigo);
-
-        }
-        public DataTable Localizar(string[] valor, CompraPesquisarPor enumPesquisarPor = CompraPesquisarPor.nomeFornecedor)
-        {
-            DALCompra DALobj = new DALCompra(conexao);
-            return DALobj.Localizar(valor, enumPesquisarPor);
+            return DALobj.Localizar(valor, enumPesquisarPor, tipoPesquisa);
         }
 
         public ModeloCompra CarregarModelo(int codigo)
